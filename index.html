@@ -12,158 +12,170 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- CSS File -->
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <div class="dashboard">
+    <div class="app-container">
 
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
+        <!-- NAVBAR -->
+        <header class="navbar">
 
-            <div class="logo">
-                <i class="fa-solid fa-cloud-sun"></i>
-                <h2>Weatherly</h2>
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+
+                <h2>Weatherly<span>.</span></h2>
             </div>
 
-            <p class="menu-heading">MENU</p>
-
-            <nav class="navigation">
-                <a href="#" class="nav-link active">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="#forecast" class="nav-link">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <span>Forecast</span>
-                </a>
-
-                <a href="#recentSearches" class="nav-link">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    <span>Recent Searches</span>
-                </a>
+            <nav class="nav-links">
+                <a href="#today" class="active">Today</a>
+                <a href="#forecast">Forecast</a>
+                <a href="#details">Weather Details</a>
             </nav>
 
-            <div class="sidebar-bottom">
-                <button id="themeToggle">
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
                     <i class="fa-solid fa-moon"></i>
-                    <span>Dark Mode</span>
                 </button>
             </div>
 
-        </aside>
+        </header>
+
+
+        <!-- SEARCH SECTION -->
+        <section class="search-section">
+
+            <div class="search-heading">
+                <p>YOUR PERSONAL WEATHER COMPANION</p>
+
+                <h1>Discover the weather.</h1>
+
+                <span>
+                    Get real-time weather updates for any city around the world.
+                </span>
+            </div>
+
+            <form id="searchForm" class="search-box">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search for a city..."
+                    autocomplete="off"
+                    required
+                >
+
+                <button type="submit" id="searchBtn">
+                    Search
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </form>
+
+            <!-- LOADING MESSAGE -->
+            <div id="loadingMessage" class="loading-message">
+                <i class="fa-solid fa-spinner"></i>
+                Fetching weather information...
+            </div>
+
+            <!-- ERROR MESSAGE -->
+            <div id="errorMessage" class="error-message"></div>
+
+        </section>
 
 
         <!-- MAIN CONTENT -->
-        <main class="main-content">
-
-            <!-- HEADER -->
-            <header class="topbar">
-
-                <div class="welcome">
-                    <h1>Weather Dashboard</h1>
-                    <p>Check the weather and plan your day.</p>
-                </div>
-
-                <div class="header-date">
-                    <i class="fa-regular fa-calendar"></i>
-                    <span id="currentDate">Loading date...</span>
-                </div>
-
-            </header>
-
-
-            <!-- CITY SEARCH -->
-            <section class="search-section">
-
-                <div class="search-heading">
-                    <h2>Search Location</h2>
-                    <p>Find current weather anywhere in the world.</p>
-                </div>
-
-                <form id="searchForm" class="search-box">
-
-                    <i class="fa-solid fa-location-dot"></i>
-
-                    <input
-                        type="text"
-                        id="cityInput"
-                        placeholder="Enter city name..."
-                        autocomplete="off"
-                        required
-                    >
-
-                    <button type="submit" id="searchBtn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        Search
-                    </button>
-
-                </form>
-
-                <div id="loadingMessage" class="loading-message">
-                    <i class="fa-solid fa-spinner"></i>
-                    Fetching weather data...
-                </div>
-
-                <div id="errorMessage" class="error-message"></div>
-
-            </section>
-
+        <main>
 
             <!-- CURRENT WEATHER -->
-            <section class="current-weather">
+            <section class="weather-hero" id="today">
 
-                <div class="section-heading">
-                    <h2>Current Weather</h2>
-                    <span id="weatherLocation">Search a city to begin</span>
-                </div>
+                <div class="weather-hero-content">
 
-                <div class="weather-card">
+                    <div class="location-info">
 
-                    <div class="weather-main">
-
-                        <div>
-                            <p class="weather-label">CURRENT TEMPERATURE</p>
-                            <h1 id="temperature">--°C</h1>
-                            <p id="weatherCondition">Weather condition</p>
+                        <div class="location-icon">
+                            <i class="fa-solid fa-location-dot"></i>
                         </div>
 
-                        <div class="weather-icon">
+                        <div>
+                            <h2 id="weatherLocation">Search for a city</h2>
+                            <p id="currentDate">Loading date...</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="temperature-section">
+
+                        <div class="temperature-info">
+                            <h1 id="temperature">--°</h1>
+
+                            <p id="weatherCondition">
+                                Waiting for weather data
+                            </p>
+
+                            <span>Current Temperature</span>
+                        </div>
+
+                        <div class="main-weather-icon">
                             <i class="fa-solid fa-cloud-sun"></i>
                         </div>
 
                     </div>
 
-                    <div class="weather-details">
+                </div>
 
-                        <div class="detail-card">
-                            <i class="fa-solid fa-wind"></i>
-                            <div>
-                                <p>Wind Speed</p>
-                                <h3 id="windSpeed">-- km/h</h3>
-                            </div>
-                        </div>
 
-                        <div class="detail-card">
-                            <i class="fa-solid fa-droplet"></i>
-                            <div>
-                                <p>Humidity</p>
-                                <h3 id="humidity">--%</h3>
-                            </div>
-                        </div>
+                <!-- WEATHER HIGHLIGHTS -->
+                <div class="weather-highlight">
 
-                        <div class="detail-card">
+                    <div class="highlight-item">
+
+                        <div class="highlight-icon">
                             <i class="fa-solid fa-temperature-half"></i>
-                            <div>
-                                <p>Feels Like</p>
-                                <h3 id="feelsLike">--°C</h3>
-                            </div>
+                        </div>
+
+                        <div>
+                            <p>Feels Like</p>
+                            <h3 id="feelsLike">--°C</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="highlight-item">
+
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+
+                        <div>
+                            <p>Humidity</p>
+                            <h3 id="humidity">--%</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="highlight-item">
+
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+
+                        <div>
+                            <p>Wind Speed</p>
+                            <h3 id="windSpeed">-- km/h</h3>
                         </div>
 
                     </div>
@@ -173,18 +185,93 @@
             </section>
 
 
-            <!-- 5 DAY FORECAST -->
+            <!-- 5-DAY FORECAST -->
             <section class="forecast-section" id="forecast">
 
                 <div class="section-heading">
-                    <h2>5-Day Forecast</h2>
-                    <p>Upcoming weather conditions</p>
+
+                    <div>
+                        <p class="section-subtitle">PLAN AHEAD</p>
+                        <h2>5-Day Forecast</h2>
+                    </div>
+
+                    <span>Upcoming weather</span>
+
                 </div>
+
 
                 <div class="forecast-grid" id="forecastGrid">
 
                     <div class="forecast-placeholder">
-                        Search a city to see the forecast.
+                        <i class="fa-solid fa-cloud-sun"></i>
+
+                        <p>
+                            Search a city to see the weather forecast.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- WEATHER DETAILS -->
+            <section class="details-section" id="details">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="section-subtitle">WEATHER INFORMATION</p>
+                        <h2>Today's Highlights</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="details-grid">
+
+                    <!-- HUMIDITY -->
+                    <div class="detail-card">
+
+                        <div class="detail-top">
+                            <p>Humidity</p>
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+
+                        <h2 id="humidityDetail">--%</h2>
+
+                        <span>Relative humidity</span>
+
+                    </div>
+
+
+                    <!-- WIND SPEED -->
+                    <div class="detail-card">
+
+                        <div class="detail-top">
+                            <p>Wind Speed</p>
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+
+                        <h2 id="windDetail">-- km/h</h2>
+
+                        <span>Current wind speed</span>
+
+                    </div>
+
+
+                    <!-- FEELS LIKE -->
+                    <div class="detail-card">
+
+                        <div class="detail-top">
+                            <p>Feels Like</p>
+                            <i class="fa-solid fa-temperature-half"></i>
+                        </div>
+
+                        <h2 id="feelsDetail">--°C</h2>
+
+                        <span>Perceived temperature</span>
+
                     </div>
 
                 </div>
@@ -196,9 +283,18 @@
             <section class="recent-section" id="recentSearches">
 
                 <div class="section-heading">
-                    <h2>Recent Searches</h2>
-                    <button id="clearHistoryBtn">Clear History</button>
+
+                    <div>
+                        <p class="section-subtitle">YOUR HISTORY</p>
+                        <h2>Recent Searches</h2>
+                    </div>
+
+                    <button id="clearHistoryBtn">
+                        Clear History
+                    </button>
+
                 </div>
+
 
                 <div class="recent-list" id="recentList">
                     <p>No recent searches yet.</p>
@@ -206,19 +302,29 @@
 
             </section>
 
-
-            <!-- FOOTER -->
-            <footer class="footer">
-                <p>©️ 2026 Weatherly. Built with HTML, CSS & JavaScript.</p>
-            </footer>
-
         </main>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <div class="footer-brand">
+                <i class="fa-solid fa-cloud-sun"></i>
+                Weatherly.
+            </div>
+
+            <p>Making every day a little brighter.</p>
+
+            <span>©️ 2026 Weatherly. All rights reserved.</span>
+
+        </footer>
 
     </div>
 
 
-    <!-- JavaScript File -->
+    <!-- JAVASCRIPT -->
     <script src="js/script.js"></script>
 
 </body>
+
 </html>
